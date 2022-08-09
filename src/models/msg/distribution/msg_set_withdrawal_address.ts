@@ -1,4 +1,4 @@
-import { Categories } from '../types';
+import { Categories } from "../types";
 
 class MsgSetWithdrawAddress {
   public category: Categories;
@@ -9,7 +9,7 @@ class MsgSetWithdrawAddress {
 
   constructor(payload: any) {
     this.json = payload.json;
-    this.category = 'distribution';
+    this.category = "distribution";
     this.type = payload.type;
     this.delegatorAddress = payload.delegatorAddress;
     this.withdrawalAddress = payload.withdrawalAddress;
@@ -18,7 +18,7 @@ class MsgSetWithdrawAddress {
   static fromJson(json: any) {
     return new MsgSetWithdrawAddress({
       json,
-      type: json['@type'],
+      type: json["@type"],
       delegatorAddress: json.delegator_address,
       withdrawalAddress: json.withdraw_address,
     });

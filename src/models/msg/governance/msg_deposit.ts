@@ -1,6 +1,6 @@
-import numeral from 'numeral';
-import * as R from 'ramda';
-import { Categories } from '../types';
+import numeral from "numeral";
+import * as R from "ramda";
+import { Categories } from "../types";
 
 class MsgDeposit {
   public category: Categories;
@@ -11,7 +11,7 @@ class MsgDeposit {
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'governance';
+    this.category = "governance";
     this.type = payload.type;
     this.proposalId = payload.proposalId;
     this.depositor = payload.depositor;
@@ -22,14 +22,14 @@ class MsgDeposit {
   static fromJson(json: any) {
     return new MsgDeposit({
       json,
-      type: json['@type'],
+      type: json["@type"],
       proposalId: numeral(json.proposal_id).value(),
       depositor: json.depositor,
       amount: json?.amount.map((x) => {
-        return ({
+        return {
           denom: x?.denom,
-          amount: R.pathOr('0', ['amount'], x),
-        });
+          amount: R.pathOr("0", ["amount"], x),
+        };
       }),
     });
   }

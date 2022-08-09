@@ -1,11 +1,6 @@
-import {
-  atomFamilyState,
-} from './atom';
+import { atomFamilyState } from "./atom";
 
-import {
-  useProfileRecoil,
-  useProfilesRecoil,
-} from './hooks';
+import { useProfileRecoil, useProfilesRecoil } from "./hooks";
 
 import {
   readProfile,
@@ -16,7 +11,7 @@ import {
   readProfileExist,
   readProfilesExist,
   validatorToDelegatorAddress,
-} from './selectors';
+} from "./selectors";
 
 export {
   validatorToDelegatorAddress,

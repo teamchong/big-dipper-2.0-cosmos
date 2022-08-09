@@ -1,29 +1,29 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
   width: number;
 }[] = [
   {
-    key: 'block',
+    key: "block",
     width: 15,
   },
   {
-    key: 'hash',
+    key: "hash",
     width: 30,
   },
   {
-    key: 'messages',
-    align: 'right',
+    key: "messages",
+    align: "right",
     width: 15,
   },
   {
-    key: 'result',
-    align: 'right',
+    key: "result",
+    align: "right",
     width: 20,
   },
   {
-    key: 'time',
-    align: 'right',
+    key: "time",
+    align: "right",
     width: 20,
   },
 ];

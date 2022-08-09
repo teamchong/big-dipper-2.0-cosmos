@@ -1,15 +1,15 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
   width: number;
 }[] = [
   {
-    key: 'address',
+    key: "address",
     width: 50,
   },
   {
-    key: 'amount',
+    key: "amount",
     width: 50,
-    align: 'right',
+    align: "right",
   },
 ];

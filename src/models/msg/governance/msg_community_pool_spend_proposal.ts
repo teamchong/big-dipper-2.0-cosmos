@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import * as R from "ramda";
 
 class MsgCommunityPoolSpendProposal {
   public type: string;
@@ -17,15 +17,15 @@ class MsgCommunityPoolSpendProposal {
 
   static fromJson(json: any) {
     return new MsgCommunityPoolSpendProposal({
-      type: json['@type'],
+      type: json["@type"],
       title: json.title,
       description: json.description,
       recipient: json.recipient,
       amount: json?.amount.map((x) => {
-        return ({
+        return {
           denom: x?.denom,
-          amount: R.pathOr('0', ['amount'], x),
-        });
+          amount: R.pathOr("0", ["amount"], x),
+        };
       }),
     });
   }

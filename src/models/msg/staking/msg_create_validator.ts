@@ -1,6 +1,6 @@
-import numeral from 'numeral';
-import * as R from 'ramda';
-import { Categories } from '../types';
+import numeral from "numeral";
+import * as R from "ramda";
+import { Categories } from "../types";
 
 class MsgCreateValidator {
   public category: Categories;
@@ -11,24 +11,24 @@ class MsgCreateValidator {
     website: string;
     securityContact: string;
     details: string;
-  }
+  };
   public commission: {
     rate: string | number;
     maxRate: string | number;
     maxChangeRate: string | number;
-  }
+  };
   public minSelfDelegation: string | number;
   public delegatorAddress: string;
   public validatorAddress: string;
   public pubkey: {
     type: string;
     key: string;
-  }
-  public value: MsgCoin
+  };
+  public value: MsgCoin;
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'staking';
+    this.category = "staking";
     this.type = payload.type;
     this.description = payload.description;
     this.commission = payload.commission;
@@ -43,7 +43,7 @@ class MsgCreateValidator {
   static fromJson(json: any) {
     return new MsgCreateValidator({
       json,
-      type: json['@type'],
+      type: json["@type"],
       description: {
         moniker: json?.description?.moniker,
         identity: json?.description?.identity,
@@ -60,12 +60,12 @@ class MsgCreateValidator {
       delegatorAddress: json?.delegator_address,
       validatorAddress: json.validator_address,
       pubkey: {
-        type: json?.pubkey?.['@type'],
+        type: json?.pubkey?.["@type"],
         key: json?.pubkey?.key,
       },
       value: {
         denom: json?.value?.denom,
-        amount: R.pathOr('0', ['value', 'amount'], json),
+        amount: R.pathOr("0", ["value", "amount"], json),
       },
     });
   }

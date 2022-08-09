@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * Helper hook to handle values that may need to be story throughout multiple sessions
@@ -7,7 +7,7 @@ import React from 'react';
  */
 export const usePersistedState = <P>(
   key: string,
-  initialValue: P,
+  initialValue: P
 ): [P, React.Dispatch<React.SetStateAction<P>>] => {
   const [value, setValue] = React.useState(initialValue);
   const retrievePersistedValue = React.useCallback(() => {

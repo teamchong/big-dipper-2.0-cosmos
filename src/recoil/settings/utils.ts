@@ -3,20 +3,18 @@ import {
   darkTemplate,
   deuteranopiaTemplate,
   tritanopiaTemplate,
-} from '@styles';
-import {
-  Theme,
-} from './types';
+} from "@styles";
+import { Theme } from "./types";
 
 // ================================
 // CONSTANTS
 // ================================
 
 export const THEME_LIST: Theme[] = [
-  'light',
-  'dark',
-  'deuteranopia',
-  'tritanopia',
+  "light",
+  "dark",
+  "deuteranopia",
+  "tritanopia",
 ];
 
 export const THEME_DICTIONARY = {
@@ -33,12 +31,6 @@ export const getThemeTemplate = (theme: Theme) => {
   return lightTemplate;
 };
 
-export const DATE_LIST = [
-  'locale',
-  'utc',
-];
+export const DATE_LIST = ["locale", "utc"];
 
-export const TX_LIST = [
-  'compact',
-  'detailed',
-];
+export const TX_LIST = ["compact", "detailed"];

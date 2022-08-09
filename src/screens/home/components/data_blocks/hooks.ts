@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import * as R from 'ramda';
-import numeral from 'numeral';
+import { useState } from "react";
+import * as R from "ramda";
+import numeral from "numeral";
 import {
   useLatestBlockHeightListenerSubscription,
   useAverageBlockTimeQuery,
@@ -9,8 +9,8 @@ import {
   TokenPriceListenerSubscription,
   useActiveValidatorCountQuery,
   ActiveValidatorCountQuery,
-} from '@graphql/types/general_types';
-import { chainConfig } from '@configs';
+} from "@graphql/types/general_types";
+import { chainConfig } from "@configs";
 
 export const useDataBlocks = () => {
   const [state, setState] = useState<{
@@ -20,7 +20,7 @@ export const useDataBlocks = () => {
     validators: {
       active: number;
       total: number;
-    }
+    };
   }>({
     blockHeight: 0,
     blockTime: 0,
@@ -39,7 +39,11 @@ export const useDataBlocks = () => {
     onSubscriptionData: (data) => {
       setState((prevState) => ({
         ...prevState,
-        blockHeight: R.pathOr(0, ['height', 0, 'height'], data.subscriptionData.data),
+        blockHeight: R.pathOr(
+          0,
+          ["height", 0, "height"],
+          data.subscriptionData.data
+        ),
       }));
     },
   });
@@ -77,7 +81,9 @@ export const useDataBlocks = () => {
 
   const formatTokenPrice = (data: TokenPriceListenerSubscription) => {
     if (data?.tokenPrice[0]?.price) {
-      return numeral(numeral(data?.tokenPrice[0]?.price).format('0.[00]', Math.floor)).value();
+      return numeral(
+        numeral(data?.tokenPrice[0]?.price).format("0.[00]", Math.floor)
+      ).value();
     }
     return state.price;
   };

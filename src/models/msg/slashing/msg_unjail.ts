@@ -1,4 +1,4 @@
-import { Categories } from '../types';
+import { Categories } from "../types";
 
 class MsgUnjail {
   public category: Categories;
@@ -7,7 +7,7 @@ class MsgUnjail {
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'slashing';
+    this.category = "slashing";
     this.type = payload.type;
     this.validatorAddress = payload.validatorAddress;
     this.json = payload.json;
@@ -16,7 +16,7 @@ class MsgUnjail {
   static fromJson(json: any) {
     return new MsgUnjail({
       json,
-      type: json['@type'],
+      type: json["@type"],
       validatorAddress: json.validator_addr,
     });
   }

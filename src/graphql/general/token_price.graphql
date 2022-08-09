@@ -1,5 +1,5 @@
 subscription TokenPriceListener($denom: String) {
-  tokenPrice: token_price(where: {unit_name: {_eq: $denom}}) {
+  tokenPrice: token_price(where: { unit_name: { _eq: $denom } }) {
     id
     price
     timestamp
@@ -9,7 +9,11 @@ subscription TokenPriceListener($denom: String) {
 }
 
 query TokenPriceHistory($denom: String, $limit: Int = 10) {
-  tokenPrice: token_price_history(where: {unit_name: {_eq: $denom}}, limit: $limit, order_by: {timestamp: desc}) {
+  tokenPrice: token_price_history(
+    where: { unit_name: { _eq: $denom } }
+    limit: $limit
+    order_by: { timestamp: desc }
+  ) {
     price
     timestamp
   }

@@ -1,25 +1,25 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
   width: number;
 }[] = [
   {
-    key: 'token',
+    key: "token",
     width: 25,
   },
   {
-    key: 'available',
+    key: "available",
     width: 25,
-    align: 'right',
+    align: "right",
   },
   {
-    key: 'reward',
+    key: "reward",
     width: 25,
-    align: 'right',
+    align: "right",
   },
   {
-    key: 'commission',
+    key: "commission",
     width: 25,
-    align: 'right',
+    align: "right",
   },
 ];

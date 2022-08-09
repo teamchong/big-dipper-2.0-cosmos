@@ -1,20 +1,20 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
   width: number;
 }[] = [
   {
-    key: 'validator',
+    key: "validator",
     width: 25,
   },
   {
-    key: 'amount',
+    key: "amount",
     width: 25,
-    align: 'right',
+    align: "right",
   },
   {
-    key: 'reward',
+    key: "reward",
     width: 25,
-    align: 'right',
+    align: "right",
   },
 ];

@@ -6,7 +6,7 @@ import {
   // lightTheme,
   // darkTheme,
   // deuteranopiaTheme,
-} from './theme';
+} from "./theme";
 
 export {
   lightTemplate,

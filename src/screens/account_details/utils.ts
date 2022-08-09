@@ -1,6 +1,6 @@
-import axios from 'axios';
-import * as R from 'ramda';
-import { toValidatorAddress } from '@utils/prefix_convert';
+import axios from "axios";
+import * as R from "ramda";
+import { toValidatorAddress } from "@utils/prefix_convert";
 import {
   AccountCommissionDocument,
   AccountWithdrawalAddressDocument,
@@ -8,7 +8,7 @@ import {
   AccountDelegationBalanceDocument,
   AccountUnbondingBalanceDocument,
   AccountDelegationRewardsDocument,
-} from '@src/graphql/general/account_details_documents';
+} from "@src/graphql/general/account_details_documents";
 
 export const fetchCommission = async (address: string) => {
   const defaultReturnValue = {
@@ -23,7 +23,7 @@ export const fetchCommission = async (address: string) => {
       },
       query: AccountCommissionDocument,
     });
-    return R.pathOr(defaultReturnValue, ['data'], data);
+    return R.pathOr(defaultReturnValue, ["data"], data);
   } catch (error) {
     return defaultReturnValue;
   }
@@ -42,7 +42,7 @@ export const fetchAccountWithdrawalAddress = async (address: string) => {
       },
       query: AccountWithdrawalAddressDocument,
     });
-    return R.pathOr(defaultReturnValue, ['data'], data);
+    return R.pathOr(defaultReturnValue, ["data"], data);
   } catch (error) {
     return defaultReturnValue;
   }
@@ -61,7 +61,7 @@ export const fetchAvailableBalances = async (address: string) => {
       },
       query: AccountBalancesDocument,
     });
-    return R.pathOr(defaultReturnValue, ['data'], data);
+    return R.pathOr(defaultReturnValue, ["data"], data);
   } catch (error) {
     return defaultReturnValue;
   }
@@ -80,7 +80,7 @@ export const fetchDelegationBalance = async (address: string) => {
       },
       query: AccountDelegationBalanceDocument,
     });
-    return R.pathOr(defaultReturnValue, ['data'], data);
+    return R.pathOr(defaultReturnValue, ["data"], data);
   } catch (error) {
     return defaultReturnValue;
   }
@@ -99,7 +99,7 @@ export const fetchUnbondingBalance = async (address: string) => {
       },
       query: AccountUnbondingBalanceDocument,
     });
-    return R.pathOr(defaultReturnValue, ['data'], data);
+    return R.pathOr(defaultReturnValue, ["data"], data);
   } catch (error) {
     return defaultReturnValue;
   }
@@ -116,7 +116,7 @@ export const fetchRewards = async (address: string) => {
       },
       query: AccountDelegationRewardsDocument,
     });
-    return R.pathOr(defaultReturnValue, ['data'], data);
+    return R.pathOr(defaultReturnValue, ["data"], data);
   } catch (error) {
     return defaultReturnValue;
   }

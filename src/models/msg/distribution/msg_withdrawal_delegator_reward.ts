@@ -1,7 +1,7 @@
-import * as R from 'ramda';
-import { formatToken } from '@utils/format_token';
-import { chainConfig } from '@configs';
-import { Categories } from '../types';
+import * as R from "ramda";
+import { formatToken } from "@utils/format_token";
+import { chainConfig } from "@configs";
+import { Categories } from "../types";
 
 class MsgWithdrawDelegatorReward {
   public category: Categories;
@@ -12,7 +12,7 @@ class MsgWithdrawDelegatorReward {
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'distribution';
+    this.category = "distribution";
     this.type = payload.type;
     this.delegatorAddress = payload.delegatorAddress;
     this.validatorAddress = payload.validatorAddress;
@@ -21,13 +21,22 @@ class MsgWithdrawDelegatorReward {
   }
 
   static getWithdrawalAmount(log: any) {
-    const withdrawEvents = R.pathOr([], ['events'], log).filter((x) => x.type === 'withdraw_rewards');
-    const withdrawAmounts = R.pathOr([], [0, 'attributes'], withdrawEvents).filter((x) => x.key === 'amount');
+    const withdrawEvents = R.pathOr([], ["events"], log).filter(
+      (x) => x.type === "withdraw_rewards"
+    );
+    const withdrawAmounts = R.pathOr(
+      [],
+      [0, "attributes"],
+      withdrawEvents
+    ).filter((x) => x.key === "amount");
 
-    const amounts = R.pathOr('0', [0, 'value'], withdrawAmounts).split(',').map((x) => {
-      const [amount, denom = chainConfig.primaryTokenUnit] = x.match(/[a-z]+|[^a-z]+/gi);
-      return formatToken(amount, denom);
-    });
+    const amounts = R.pathOr("0", [0, "value"], withdrawAmounts)
+      .split(",")
+      .map((x) => {
+        const [amount, denom = chainConfig.primaryTokenUnit] =
+          x.match(/[a-z]+|[^a-z]+/gi);
+        return formatToken(amount, denom);
+      });
 
     return amounts;
   }
@@ -37,7 +46,7 @@ class MsgWithdrawDelegatorReward {
 
     return new MsgWithdrawDelegatorReward({
       json,
-      type: json['@type'],
+      type: json["@type"],
       delegatorAddress: json.delegator_address,
       validatorAddress: json.validator_address,
       amounts,

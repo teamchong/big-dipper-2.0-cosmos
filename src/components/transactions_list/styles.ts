@@ -1,22 +1,23 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = () => {
   const styles = makeStyles(
     (theme) => {
-      return ({
+      return {
         mobile: {
-          [theme.breakpoints.up('lg')]: {
-            display: 'none',
+          [theme.breakpoints.up("lg")]: {
+            display: "none",
           },
         },
         desktop: {
-          display: 'none',
-          [theme.breakpoints.up('lg')]: {
-            display: 'block',
+          display: "none",
+          [theme.breakpoints.up("lg")]: {
+            display: "block",
           },
         },
-      });
-    }, { index: 1 },
+      };
+    },
+    { index: 1 }
   )();
 
   return styles;

@@ -1,5 +1,5 @@
-import numeral from 'numeral';
-import { Categories } from '../types';
+import numeral from "numeral";
+import { Categories } from "../types";
 
 class MsgEditValidator {
   public category: Categories;
@@ -10,14 +10,14 @@ class MsgEditValidator {
     website: string;
     securityContact: string;
     details: string;
-  }
+  };
   public validatorAddress: string;
   public commissionRate: string | number;
   public minSelfDelegation: string | number;
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'staking';
+    this.category = "staking";
     this.type = payload.type;
     this.description = payload.description;
     this.validatorAddress = payload.validatorAddress;
@@ -29,7 +29,7 @@ class MsgEditValidator {
   static fromJson(json: any) {
     return new MsgEditValidator({
       json,
-      type: json['@type'],
+      type: json["@type"],
       description: {
         moniker: json?.description?.moniker,
         identity: json?.description?.identity,

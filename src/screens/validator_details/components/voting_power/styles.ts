@@ -1,66 +1,67 @@
-import { makeStyles } from '@material-ui/core/styles';
-import Color from 'color';
+import { makeStyles } from "@material-ui/core/styles";
+import Color from "color";
 
 export const useStyles = (percentage: number) => {
   const styles = makeStyles(
     (theme) => {
-      return ({
+      return {
         root: {
-          '& .MuiTypography-h2': {
+          "& .MuiTypography-h2": {
             marginBottom: theme.spacing(2),
           },
         },
         data: {
-          display: 'flex',
-          alignItems: 'flex-end',
-          '& .primary__data': {
+          display: "flex",
+          alignItems: "flex-end",
+          "& .primary__data": {
             color: theme.palette.primary.main,
             marginRight: theme.spacing(2),
-            fontSize: '2.5rem',
+            fontSize: "2.5rem",
           },
         },
         chart: {
-          display: 'flex',
-          height: '8px',
+          display: "flex",
+          height: "8px",
           borderRadius: theme.shape.borderRadius,
           background: Color(theme.palette.primary.main).alpha(0.2).string(),
-          overflow: 'hidden',
+          overflow: "hidden",
           margin: theme.spacing(2, 0),
         },
         active: {
           width: `${percentage}%`,
           background: theme.palette.primary.main,
-          transition: '0.3s',
+          transition: "0.3s",
         },
         item: {
-          '&:not(:last-child)': {
+          "&:not(:last-child)": {
             marginBottom: theme.spacing(2),
           },
-          '& .label': {
+          "& .label": {
             marginBottom: theme.spacing(1),
             color: theme.palette.custom.fonts.fontThree,
           },
-          '& p.value': {
+          "& p.value": {
             color: theme.palette.custom.fonts.fontTwo,
-            '& .positive': {
+            "& .positive": {
               color: theme.palette.custom.tags.one,
             },
-            '& .negative': {
+            "& .negative": {
               color: theme.palette.custom.tags.three,
             },
           },
-          '& a': {
+          "& a": {
             color: theme.palette.custom.fonts.highlight,
           },
 
-          [theme.breakpoints.up('md')]: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+          [theme.breakpoints.up("md")]: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           },
         },
-      });
-    }, { index: 1 },
+      };
+    },
+    { index: 1 }
   )();
 
   return styles;
