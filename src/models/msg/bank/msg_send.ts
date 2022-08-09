@@ -1,5 +1,5 @@
-import * as R from 'ramda';
-import { Categories } from '../types';
+import * as R from "ramda";
+import { Categories } from "../types";
 
 class MsgSend {
   public category: Categories;
@@ -10,7 +10,7 @@ class MsgSend {
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'bank';
+    this.category = "bank";
     this.type = payload.type;
     this.fromAddress = payload.fromAddress;
     this.toAddress = payload.toAddress;
@@ -21,14 +21,14 @@ class MsgSend {
   static fromJson(json: any) {
     return new MsgSend({
       json,
-      type: json['@type'],
+      type: json["@type"],
       fromAddress: json.from_address,
       toAddress: json.to_address,
       amount: json?.amount.map((x) => {
-        return ({
+        return {
           denom: x?.denom,
-          amount: R.pathOr('0', ['amount'], x),
-        });
+          amount: R.pathOr("0", ["amount"], x),
+        };
       }),
     });
   }

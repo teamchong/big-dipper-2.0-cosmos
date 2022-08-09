@@ -1,4 +1,4 @@
-import { Categories } from '../types';
+import { Categories } from "../types";
 
 class MsgSaveProfile {
   public category: Categories;
@@ -7,7 +7,7 @@ class MsgSaveProfile {
   public creator: string;
 
   constructor(payload: any) {
-    this.category = 'profiles';
+    this.category = "profiles";
     this.type = payload.type;
     this.creator = payload.creator;
     this.json = payload.json;
@@ -15,7 +15,7 @@ class MsgSaveProfile {
 
   static fromJson(json: any) {
     return new MsgSaveProfile({
-      type: json['@type'],
+      type: json["@type"],
       creator: json.creator,
       json,
     });

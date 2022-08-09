@@ -1,12 +1,8 @@
-import {
-  renderHook,
-  act,
-  cleanup,
-} from '@testing-library/react-hooks';
-import { useMobile } from './hooks';
+import { renderHook, act, cleanup } from "@testing-library/react-hooks";
+import { useMobile } from "./hooks";
 
-describe('hook: useMobile', () => {
-  test('correctly toggles menu open', async () => {
+describe("hook: useMobile", () => {
+  test("correctly toggles menu open", async () => {
     const { result } = renderHook(() => useMobile());
     // initial
     expect(result.current.isMenu).toBe(false);

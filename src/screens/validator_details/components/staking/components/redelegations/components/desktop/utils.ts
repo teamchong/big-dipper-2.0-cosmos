@@ -1,24 +1,24 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
   width: number;
 }[] = [
   {
-    key: 'address',
+    key: "address",
     width: 25,
   },
   {
-    key: 'to',
+    key: "to",
     width: 25,
   },
   {
-    key: 'amount',
-    align: 'right',
+    key: "amount",
+    align: "right",
     width: 20,
   },
   {
-    key: 'completionTime',
-    align: 'right',
+    key: "completionTime",
+    align: "right",
     width: 30,
   },
 ];

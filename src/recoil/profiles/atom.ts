@@ -1,9 +1,9 @@
-import { atomFamily } from 'recoil';
-import { AtomState } from './types';
+import { atomFamily } from "recoil";
+import { AtomState } from "./types";
 
 const initialState: AtomState = null;
 
 export const atomFamilyState = atomFamily<AtomState, string>({
-  key: 'profile',
+  key: "profile",
   default: initialState,
 });

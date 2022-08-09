@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { toast } from 'react-toastify';
-import copy from 'copy-to-clipboard';
+import { useState } from "react";
+import { toast } from "react-toastify";
+import copy from "copy-to-clipboard";
 
 export const useOverview = (t) => {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ export const useOverview = (t) => {
 
   const handleCopyToClipboard = (value: string) => {
     copy(value);
-    toast(t('common:copied'));
+    toast(t("common:copied"));
   };
 
   return {

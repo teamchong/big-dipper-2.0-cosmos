@@ -6,7 +6,7 @@ class MsgParameterChangeProposal {
     subspace: string;
     key: string;
     value: string | number;
-  }[]
+  }[];
 
   constructor(payload: any) {
     this.type = payload.type;
@@ -17,7 +17,7 @@ class MsgParameterChangeProposal {
 
   static fromJson(json: any) {
     return new MsgParameterChangeProposal({
-      type: json['@type'],
+      type: json["@type"],
       title: json.title,
       description: json.description,
       changes: json?.changes?.map((x) => {

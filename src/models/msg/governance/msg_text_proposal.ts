@@ -11,7 +11,7 @@ class MsgTextProposal {
 
   static fromJson(json: any) {
     return new MsgTextProposal({
-      type: json['@type'],
+      type: json["@type"],
       title: json.title,
       description: json.description,
     });

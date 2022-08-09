@@ -1,20 +1,20 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
   width: number;
 }[] = [
   {
-    key: 'network',
+    key: "network",
     width: 25,
   },
   {
-    key: 'identifier',
+    key: "identifier",
     width: 50,
-    align: 'left',
+    align: "left",
   },
   {
-    key: 'creationTime',
+    key: "creationTime",
     width: 25,
-    align: 'right',
+    align: "right",
   },
 ];

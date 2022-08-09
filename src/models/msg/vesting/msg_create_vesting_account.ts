@@ -1,5 +1,5 @@
-import * as R from 'ramda';
-import { Categories } from '../types';
+import * as R from "ramda";
+import { Categories } from "../types";
 
 class MsgCreatePeriodicVestingAccount {
   public category: Categories;
@@ -9,7 +9,7 @@ class MsgCreatePeriodicVestingAccount {
   public toAddress: string;
 
   constructor(payload: any) {
-    this.category = 'vesting';
+    this.category = "vesting";
     this.type = payload.type;
     this.json = payload.json;
     this.fromAddress = payload.fromAddress;
@@ -19,9 +19,9 @@ class MsgCreatePeriodicVestingAccount {
   static fromJson(json: any) {
     return new MsgCreatePeriodicVestingAccount({
       json,
-      type: json['@type'],
-      fromAddress: R.pathOr('', ['from_address'], json),
-      toAddress: R.pathOr('', ['to_address'], json),
+      type: json["@type"],
+      fromAddress: R.pathOr("", ["from_address"], json),
+      toAddress: R.pathOr("", ["to_address"], json),
     });
   }
 }

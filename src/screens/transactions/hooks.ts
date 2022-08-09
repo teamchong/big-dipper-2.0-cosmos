@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import * as R from 'ramda';
+import { useState } from "react";
+import * as R from "ramda";
 import {
   useTransactionsQuery,
   useTransactionsListenerSubscription,
   TransactionsListenerSubscription,
-} from '@graphql/types/general_types';
-import { convertMsgsToModels } from '@msg';
-import { TransactionsState } from './types';
+} from "@graphql/types/general_types";
+import { convertMsgsToModels } from "@msg";
+import { TransactionsState } from "./types";
 
 export const useTransactions = () => {
   const [state, setState] = useState<TransactionsState>({
@@ -28,8 +28,8 @@ export const useTransactions = () => {
    * and sorts by height in case it bugs out
    */
   const uniqueAndSort = R.pipe(
-    R.uniqBy(R.prop('hash')),
-    R.sort(R.descend(R.prop('height'))),
+    R.uniqBy(R.prop("hash")),
+    R.sort(R.descend(R.prop("height")))
   );
 
   // ================================
@@ -86,24 +86,26 @@ export const useTransactions = () => {
       isNextPageLoading: true,
     });
     // refetch query
-    await transactionQuery.fetchMore({
-      variables: {
-        offset: state.items.length,
-        limit: LIMIT,
-      },
-    }).then(({ data }) => {
-      const itemsLength = data.transactions.length;
-      const newItems = uniqueAndSort([
-        ...state.items,
-        ...formatTransactions(data),
-      ]);
-      // set new state
-      handleSetState({
-        items: newItems,
-        isNextPageLoading: false,
-        hasNextPage: itemsLength === 51,
+    await transactionQuery
+      .fetchMore({
+        variables: {
+          offset: state.items.length,
+          limit: LIMIT,
+        },
+      })
+      .then(({ data }) => {
+        const itemsLength = data.transactions.length;
+        const newItems = uniqueAndSort([
+          ...state.items,
+          ...formatTransactions(data),
+        ]);
+        // set new state
+        handleSetState({
+          items: newItems,
+          isNextPageLoading: false,
+          hasNextPage: itemsLength === 51,
+        });
       });
-    });
   };
 
   const formatTransactions = (data: TransactionsListenerSubscription) => {
@@ -114,7 +116,7 @@ export const useTransactions = () => {
 
     return formattedData.map((x) => {
       const messages = convertMsgsToModels(x);
-      return ({
+      return {
         height: x.height,
         hash: x.hash,
         messages: {
@@ -123,7 +125,7 @@ export const useTransactions = () => {
         },
         success: x.success,
         timestamp: x.block.timestamp,
-      });
+      };
     });
   };
 

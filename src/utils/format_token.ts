@@ -1,7 +1,7 @@
-import numeral from 'numeral';
-import * as R from 'ramda';
-import Big from 'big.js';
-import { chainConfig } from '@configs';
+import numeral from "numeral";
+import * as R from "ramda";
+import Big from "big.js";
+import { chainConfig } from "@configs";
 
 /**
  * Util to help me correctly transform a base denom amount
@@ -10,14 +10,14 @@ import { chainConfig } from '@configs';
  * @param denom the denom to convert the amount in to
  * @returns TokenUnit
  */
-export const formatToken = (value: number | string, denom = ''): TokenUnit => {
+export const formatToken = (value: number | string, denom = ""): TokenUnit => {
   const selectedDenom = chainConfig.tokenUnits[denom];
 
-  if (typeof value !== 'string' && typeof value !== 'number') {
-    value = '0';
+  if (typeof value !== "string" && typeof value !== "number") {
+    value = "0";
   }
 
-  if (typeof value === 'number') {
+  if (typeof value === "number") {
     value = `${value}`;
   }
 
@@ -25,7 +25,7 @@ export const formatToken = (value: number | string, denom = ''): TokenUnit => {
     value,
     displayDenom: denom,
     baseDenom: denom,
-    exponent: R.pathOr(0, ['exponent'], selectedDenom),
+    exponent: R.pathOr(0, ["exponent"], selectedDenom),
   };
 
   if (!selectedDenom) {
@@ -45,12 +45,15 @@ export const formatToken = (value: number | string, denom = ''): TokenUnit => {
  * @param exponent the exponent to div by
  * @returns string value of formatted
  */
-export const formatTokenByExponent = (value: number | string, exponent = 0): string => {
-  if (typeof value !== 'string' && typeof value !== 'number') {
-    value = '0';
+export const formatTokenByExponent = (
+  value: number | string,
+  exponent = 0
+): string => {
+  if (typeof value !== "string" && typeof value !== "number") {
+    value = "0";
   }
 
-  if (typeof value === 'number') {
+  if (typeof value === "number") {
     value = `${value}`;
   }
 
@@ -66,15 +69,18 @@ export const formatTokenByExponent = (value: number | string, exponent = 0): str
  * @param toFixed defaults null
  * @returns formatted number with all the decimal places one can wish for
  */
-export const formatNumber = (tokenUnit: string, toFixed: number = null): string => {
+export const formatNumber = (
+  tokenUnit: string,
+  toFixed: number = null
+): string => {
   // split whole number and decimal if any
-  const split = `${tokenUnit}`.split('.');
+  const split = `${tokenUnit}`.split(".");
   // whole number
-  const wholeNumber = R.pathOr('', [0], split);
+  const wholeNumber = R.pathOr("", [0], split);
   // decimal
-  const decimal = R.pathOr('', [1], split);
+  const decimal = R.pathOr("", [1], split);
   // add commas for fullnumber ex: 1000 -> 1,000
-  const formatWholeNumber = numeral(wholeNumber).format('0,0');
+  const formatWholeNumber = numeral(wholeNumber).format("0,0");
 
   // in the event that there is actually decimals and tofixed has not been set to 0
   // we will handle the decimal
@@ -89,7 +95,9 @@ export const formatNumber = (tokenUnit: string, toFixed: number = null): string 
     // merge the full number together and return it.
     // If for some insane reason after removing all the 0s we ended up with
     // '' in the decimal place we just return the full number
-    return `${formatWholeNumber}${formatDecimal.length ? '.' : ''}${formatDecimal}`;
+    return `${formatWholeNumber}${
+      formatDecimal.length ? "." : ""
+    }${formatDecimal}`;
   }
 
   // else we return whole number
@@ -106,7 +114,7 @@ export const removeEndingZeros = (value: string) => {
   let end = value.length;
   for (let i = value.length; i > 0; i -= 1) {
     const currentDigit = value[i - 1];
-    if (currentDigit !== '0') {
+    if (currentDigit !== "0") {
       break;
     }
     end -= 1;

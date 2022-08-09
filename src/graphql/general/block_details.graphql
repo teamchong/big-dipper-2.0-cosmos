@@ -1,12 +1,12 @@
 query BlockDetails($height: bigint, $signatureHeight: bigint) {
-  transaction(where: {height: {_eq: $height}}) {
+  transaction(where: { height: { _eq: $height } }) {
     height
     hash
     messages
     success
     logs
   }
-  block(limit: 1, where: {height: {_eq: $height}}) {
+  block(limit: 1, where: { height: { _eq: $height } }) {
     height
     hash
     timestamp
@@ -17,18 +17,20 @@ query BlockDetails($height: bigint, $signatureHeight: bigint) {
       }
     }
   }
-  preCommitsAggregate: pre_commit_aggregate(where: {height: {_eq: $signatureHeight}}) {
-      aggregate{
-        sum {
-          votingPower: voting_power
-        }
+  preCommitsAggregate: pre_commit_aggregate(
+    where: { height: { _eq: $signatureHeight } }
+  ) {
+    aggregate {
+      sum {
+        votingPower: voting_power
       }
+    }
   }
-  preCommits: pre_commit(where: {height: {_eq: $signatureHeight}}) {
+  preCommits: pre_commit(where: { height: { _eq: $signatureHeight } }) {
     validator {
-        validatorInfo: validator_info {
-          operatorAddress: operator_address
-        }
+      validatorInfo: validator_info {
+        operatorAddress: operator_address
       }
+    }
   }
 }

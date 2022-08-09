@@ -1,4 +1,4 @@
-import { Categories } from '../types';
+import { Categories } from "../types";
 
 class MsgGrantAllowance {
   public category: Categories;
@@ -8,7 +8,7 @@ class MsgGrantAllowance {
   public grantee: string;
 
   constructor(payload: any) {
-    this.category = 'feegrant';
+    this.category = "feegrant";
     this.type = payload.type;
     this.json = payload.json;
     this.granter = payload.granter;
@@ -18,7 +18,7 @@ class MsgGrantAllowance {
   static fromJson(json: any) {
     return new MsgGrantAllowance({
       json,
-      type: json['@type'],
+      type: json["@type"],
       granter: json.granter,
       grantee: json.grantee,
     });

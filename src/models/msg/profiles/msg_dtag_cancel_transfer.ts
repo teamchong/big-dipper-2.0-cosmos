@@ -1,4 +1,4 @@
-import { Categories } from '../types';
+import { Categories } from "../types";
 
 class MsgDtagCancelTransfer {
   public category: Categories;
@@ -8,7 +8,7 @@ class MsgDtagCancelTransfer {
   public receiver: string;
 
   constructor(payload: any) {
-    this.category = 'profiles';
+    this.category = "profiles";
     this.type = payload.type;
     this.json = payload.json;
     this.sender = payload.sender;
@@ -18,7 +18,7 @@ class MsgDtagCancelTransfer {
   static fromJson(json: any) {
     return new MsgDtagCancelTransfer({
       json,
-      type: json['@type'],
+      type: json["@type"],
       sender: json.sender,
       receiver: json.receiver,
     });
