@@ -1,10 +1,8 @@
-import {
-  useState, useEffect,
-} from 'react';
+import { useState, useEffect } from "react";
 
 export const useWindowOrigin = () => {
-  const isClient = typeof window === 'object';
-  const [location, setLocation] = useState<string>('');
+  const isClient = typeof window === "object";
+  const [location, setLocation] = useState<string>("");
 
   useEffect(() => {
     if (!isClient) return;

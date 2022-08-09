@@ -1,5 +1,5 @@
-import * as R from 'ramda';
-import { Categories } from '../types';
+import * as R from "ramda";
+import { Categories } from "../types";
 
 class MsgUndelegate {
   public category: Categories;
@@ -10,7 +10,7 @@ class MsgUndelegate {
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'staking';
+    this.category = "staking";
     this.type = payload.type;
     this.delegatorAddress = payload.delegatorAddress;
     this.validatorAddress = payload.validatorAddress;
@@ -21,12 +21,12 @@ class MsgUndelegate {
   static fromJson(json: any) {
     return new MsgUndelegate({
       json,
-      type: json['@type'],
+      type: json["@type"],
       delegatorAddress: json?.delegator_address,
       validatorAddress: json?.validator_address,
       amount: {
         denom: json?.amount?.denom,
-        amount: R.pathOr('0', ['amount', 'amount'], json),
+        amount: R.pathOr("0", ["amount", "amount"], json),
       },
     });
   }

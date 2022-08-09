@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import * as R from "ramda";
 
 class SlashingParams {
   public downtimeJailDuration: number;
@@ -17,11 +17,15 @@ class SlashingParams {
 
   static fromJson(data: any) {
     return new SlashingParams({
-      downtimeJailDuration: R.pathOr(0, ['downtime_jail_duration'], data),
-      minSignedPerWindow: R.pathOr(0, ['min_signed_per_window'], data),
-      signedBlockWindow: R.pathOr(0, ['signed_blocks_window'], data),
-      slashFractionDoubleSign: R.pathOr(0, ['slash_fraction_double_sign'], data),
-      slashFractionDowntime: R.pathOr(0, ['slash_fraction_downtime'], data),
+      downtimeJailDuration: R.pathOr(0, ["downtime_jail_duration"], data),
+      minSignedPerWindow: R.pathOr(0, ["min_signed_per_window"], data),
+      signedBlockWindow: R.pathOr(0, ["signed_blocks_window"], data),
+      slashFractionDoubleSign: R.pathOr(
+        0,
+        ["slash_fraction_double_sign"],
+        data
+      ),
+      slashFractionDowntime: R.pathOr(0, ["slash_fraction_downtime"], data),
     });
   }
 }

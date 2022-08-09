@@ -1,10 +1,11 @@
-import axios from 'axios';
-import { DesmosProfileQuery } from '@graphql/types/profile_types';
+import axios from "axios";
+import { DesmosProfileQuery } from "@graphql/types/profile_types";
 import {
-  DesmosProfileDocument, DesmosProfileLinkDocument,
-} from '@src/graphql/profiles/desmos_profile_graphql';
+  DesmosProfileDocument,
+  DesmosProfileLinkDocument,
+} from "@src/graphql/profiles/desmos_profile_graphql";
 
-const PROFILE_API = 'https://gql.mainnet.desmos.network/v1/graphql';
+const PROFILE_API = "https://gql.mainnet.desmos.network/v1/graphql";
 
 const fetchDesmos = async (address: string) => {
   const { data } = await axios.post(PROFILE_API, {
@@ -31,7 +32,7 @@ const fetchDesmosProfile = async (address: string) => {
     profile: [],
   };
   try {
-    if (address.includes('desmos')) {
+    if (address.includes("desmos")) {
       data = await fetchDesmos(address);
     }
 
@@ -47,7 +48,7 @@ const fetchDesmosProfile = async (address: string) => {
   }
 };
 
-const formatDesmosProfile = (data:DesmosProfileQuery) => {
+const formatDesmosProfile = (data: DesmosProfileQuery) => {
   if (!data.profile.length) {
     return null;
   }
@@ -55,42 +56,44 @@ const formatDesmosProfile = (data:DesmosProfileQuery) => {
   const profile = data.profile[0];
 
   const nativeData = {
-    network: 'native',
+    network: "native",
     identifier: profile.address,
     creationTime: profile.creationTime,
   };
 
   const applications = profile.applicationLinks.map((x) => {
-    return ({
+    return {
       network: x.application,
       identifier: x.username,
       creationTime: x.creationTime,
-    });
+    };
   });
 
   const chains = profile.chainLinks.map((x) => {
-    return ({
+    return {
       network: x.chainConfig.name,
       identifier: x.externalAddress,
       creationTime: x.creationTime,
-    });
+    };
   });
 
-  const connectionsWithoutNativeSorted = [...applications, ...chains].sort((a, b) => (
-    (a.network.toLowerCase() > b.network.toLowerCase()) ? 1 : -1
-  ));
+  const connectionsWithoutNativeSorted = [...applications, ...chains].sort(
+    (a, b) => (a.network.toLowerCase() > b.network.toLowerCase() ? 1 : -1)
+  );
 
-  return ({
+  return {
     dtag: profile.dtag,
     nickname: profile.nickname,
     imageUrl: profile.profilePic,
     coverUrl: profile.coverPic,
     bio: profile.bio,
     connections: [nativeData, ...connectionsWithoutNativeSorted],
-  });
+  };
 };
 
-export const getProfile = async (delegatorAddress: string): Promise<DesmosProfile | null> => {
+export const getProfile = async (
+  delegatorAddress: string
+): Promise<DesmosProfile | null> => {
   const profile = await fetchDesmosProfile(delegatorAddress);
   return profile;
 };

@@ -1,10 +1,7 @@
 /* eslint-disable max-len */
-import { useEffect } from 'react';
-import {
-  useRecoilValue,
-  useRecoilCallback,
-} from 'recoil';
-import { chainConfig } from '@configs';
+import { useEffect } from "react";
+import { useRecoilValue, useRecoilCallback } from "recoil";
+import { chainConfig } from "@configs";
 import {
   writeProfile,
   readProfilesExist,
@@ -13,9 +10,9 @@ import {
   readProfiles,
   readDelegatorAddress,
   readDelegatorAddresses,
-} from '@recoil/profiles';
-import { AtomState as ProfileAtomState } from '@recoil/profiles/types';
-import { getProfile } from './utils';
+} from "@recoil/profiles";
+import { AtomState as ProfileAtomState } from "@recoil/profiles/types";
+import { getProfile } from "./utils";
 
 /**
  * Accepts a delegator address and returns the appropriate profile
@@ -42,9 +39,7 @@ export const useProfileRecoil = (address: string): AvatarName | null => {
   });
 
   useEffect(() => {
-    if (chainConfig.extra.profile
-      && delegatorAddress
-      && rawProfile === null) {
+    if (chainConfig.extra.profile && delegatorAddress && rawProfile === null) {
       fetchProfile();
     }
   }, [address]);
@@ -58,26 +53,30 @@ export const useProfileRecoil = (address: string): AvatarName | null => {
  */
 export const useProfilesRecoil = (addresses: string[]): AvatarName[] => {
   const delegatorAddresses = useRecoilValue(readDelegatorAddresses(addresses));
-  const rawProfiles: ProfileAtomState[] = useRecoilValue(readProfilesExist(addresses));
+  const rawProfiles: ProfileAtomState[] = useRecoilValue(
+    readProfilesExist(addresses)
+  );
   const profiles = useRecoilValue(readProfiles(addresses));
 
   const fetchProfiles = useRecoilCallback(({ set }) => async () => {
-    const fetchedProfiles = await Promise.all(rawProfiles.map(async (x, i) => {
-      const delegatorAddress = delegatorAddresses[i];
-      if (delegatorAddress && x === null) {
-        const fetchedProfile = await getProfile(delegatorAddress);
-        if (fetchedProfile === null) {
-          set(writeProfile(delegatorAddress), null);
-        } else {
-          set(writeProfile(delegatorAddress), {
-            address: delegatorAddress,
-            // name: fetchedProfile.nickname || addresses[i],
-            name: `@${fetchedProfile.dtag}` || addresses[i],
-            imageUrl: fetchedProfile.imageUrl,
-          });
+    const fetchedProfiles = await Promise.all(
+      rawProfiles.map(async (x, i) => {
+        const delegatorAddress = delegatorAddresses[i];
+        if (delegatorAddress && x === null) {
+          const fetchedProfile = await getProfile(delegatorAddress);
+          if (fetchedProfile === null) {
+            set(writeProfile(delegatorAddress), null);
+          } else {
+            set(writeProfile(delegatorAddress), {
+              address: delegatorAddress,
+              // name: fetchedProfile.nickname || addresses[i],
+              name: `@${fetchedProfile.dtag}` || addresses[i],
+              imageUrl: fetchedProfile.imageUrl,
+            });
+          }
         }
-      }
-    }));
+      })
+    );
 
     return fetchedProfiles;
   });

@@ -1,4 +1,4 @@
-import { Categories } from '../types';
+import { Categories } from "../types";
 
 class MsgDtagAcceptTransfer {
   public category: Categories;
@@ -9,7 +9,7 @@ class MsgDtagAcceptTransfer {
   public newDtag: string;
 
   constructor(payload: any) {
-    this.category = 'profiles';
+    this.category = "profiles";
     this.type = payload.type;
     this.json = payload.json;
     this.sender = payload.sender;
@@ -20,7 +20,7 @@ class MsgDtagAcceptTransfer {
   static fromJson(json: any) {
     return new MsgDtagAcceptTransfer({
       json,
-      type: json['@type'],
+      type: json["@type"],
       sender: json.sender,
       receiver: json.receiver,
       newDtag: json.new_dtag,

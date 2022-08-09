@@ -1,10 +1,10 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
   width: number;
 }[] = [
   {
-    key: 'voter',
+    key: "voter",
     // width: 34,
     width: 50,
   },
@@ -14,9 +14,9 @@ export const columns:{
   //   align: 'right',
   // },
   {
-    key: 'vote',
+    key: "vote",
     // width: 33,
     width: 50,
-    align: 'right',
+    align: "right",
   },
 ];

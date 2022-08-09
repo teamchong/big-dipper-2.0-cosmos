@@ -1,4 +1,4 @@
-import numeral from 'numeral';
+import numeral from "numeral";
 
 class MsgSoftwareUpgradeProposal {
   public type: string;
@@ -10,7 +10,7 @@ class MsgSoftwareUpgradeProposal {
     height: string | number;
     info: string;
     upgradedClientState: any;
-  }
+  };
 
   constructor(payload: any) {
     this.type = payload.type;
@@ -21,7 +21,7 @@ class MsgSoftwareUpgradeProposal {
 
   static fromJson(json: any) {
     return new MsgSoftwareUpgradeProposal({
-      type: json['@type'],
+      type: json["@type"],
       title: json.title,
       description: json.description,
       plan: {

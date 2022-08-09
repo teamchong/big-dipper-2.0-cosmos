@@ -1,22 +1,22 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
 }[] = [
   {
-    key: 'height',
+    key: "height",
   },
   {
-    key: 'proposer',
+    key: "proposer",
   },
   {
-    key: 'hash',
+    key: "hash",
   },
   {
-    key: 'txs',
-    align: 'right',
+    key: "txs",
+    align: "right",
   },
   {
-    key: 'time',
-    align: 'right',
+    key: "time",
+    align: "right",
   },
 ];

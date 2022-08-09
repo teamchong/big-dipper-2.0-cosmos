@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import * as R from "ramda";
 
 class DistributionParams {
   public baseProposerReward: number;
@@ -15,10 +15,10 @@ class DistributionParams {
 
   static fromJson(data: any) {
     return new DistributionParams({
-      baseProposerReward: R.pathOr(0, ['base_proposer_reward'], data),
-      bonusProposerReward: R.pathOr(0, ['bonus_proposer_reward'], data),
-      communityTax: R.pathOr(0, ['community_tax'], data),
-      withdrawAddressEnabled: R.pathOr(false, ['withdraw_addr_enabled'], data),
+      baseProposerReward: R.pathOr(0, ["base_proposer_reward"], data),
+      bonusProposerReward: R.pathOr(0, ["bonus_proposer_reward"], data),
+      communityTax: R.pathOr(0, ["community_tax"], data),
+      withdrawAddressEnabled: R.pathOr(false, ["withdraw_addr_enabled"], data),
     });
   }
 }

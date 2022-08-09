@@ -1,28 +1,28 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
+  align?: "left" | "center" | "right" | "justify" | "inherit";
   width: number;
 }[] = [
   {
-    key: 'height',
+    key: "height",
     width: 15,
   },
   {
-    key: 'proposer',
+    key: "proposer",
     width: 25,
   },
   {
-    key: 'hash',
+    key: "hash",
     width: 25,
   },
   {
-    key: 'txs',
-    align: 'right',
+    key: "txs",
+    align: "right",
     width: 15,
   },
   {
-    key: 'time',
-    align: 'right',
+    key: "time",
+    align: "right",
     width: 20,
   },
 ];

@@ -1,16 +1,16 @@
-import * as R from 'ramda';
-import { Categories } from '../types';
+import * as R from "ramda";
+import { Categories } from "../types";
 
 class MsgDelegate {
   public category: Categories;
   public type: string;
   public delegatorAddress: string;
   public validatorAddress: string;
-  public amount: MsgCoin
+  public amount: MsgCoin;
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'staking';
+    this.category = "staking";
     this.type = payload.type;
     this.delegatorAddress = payload.delegatorAddress;
     this.validatorAddress = payload.validatorAddress;
@@ -21,12 +21,12 @@ class MsgDelegate {
   static fromJson(json: any) {
     return new MsgDelegate({
       json,
-      type: json['@type'],
+      type: json["@type"],
       delegatorAddress: json?.delegator_address,
       validatorAddress: json?.validator_address,
       amount: {
         denom: json?.amount?.denom,
-        amount: R.pathOr('0', ['amount', 'amount'], json),
+        amount: R.pathOr("0", ["amount", "amount"], json),
       },
     });
   }

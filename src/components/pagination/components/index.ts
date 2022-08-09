@@ -1,5 +1,3 @@
-import Actions from './actions';
+import Actions from "./actions";
 
-export {
-  Actions,
-};
+export { Actions };
