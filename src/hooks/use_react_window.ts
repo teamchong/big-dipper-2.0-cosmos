@@ -1,9 +1,5 @@
-import {
-  useRef,
-  useEffect,
-  createRef,
-} from 'react';
-import * as R from 'ramda';
+import { useRef, useEffect, createRef } from "react";
+import * as R from "ramda";
 
 // reusable hook helpers for react window list components
 
@@ -16,9 +12,16 @@ export const useList = () => {
   };
 
   const setRowHeight = (idx, size) => {
-    R.pathOr(() => { console.log('something went wrong'); }, ['current', 'resetAfterIndex'], listRef)(0);
+    R.pathOr(
+      () => {
+        console.log("something went wrong");
+      },
+      ["current", "resetAfterIndex"],
+      listRef
+    )(0);
     rowHeights.current = {
-      ...rowHeights.current, [idx]: size,
+      ...rowHeights.current,
+      [idx]: size,
     };
   };
 
@@ -32,13 +35,13 @@ export const useList = () => {
 
 export const useListRow = (
   index: number,
-  setRowHeight: (idx: number, clientHeight: number) => void,
+  setRowHeight: (idx: number, clientHeight: number) => void
 ) => {
-  const rowRef:any = useRef({});
+  const rowRef: any = useRef({});
 
   useEffect(() => {
     if (rowRef.current) {
-      setRowHeight(index, R.pathOr(0, ['current', 'clientHeight'], rowRef));
+      setRowHeight(index, R.pathOr(0, ["current", "clientHeight"], rowRef));
     }
   }, [rowRef]);
 
@@ -47,20 +50,22 @@ export const useListRow = (
   };
 };
 
-export const useGrid = (columns: {
-  key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
-  width: number;
-}[]) => {
+export const useGrid = (
+  columns: {
+    key: string;
+    align?: "left" | "center" | "right" | "justify" | "inherit";
+    width: number;
+  }[]
+) => {
   const gridRef = createRef();
   const columnRef = createRef();
 
   const onResize = () => {
     if (gridRef.current != null) {
-      R.pathOr(() => null, ['current', 'resetAfterColumnIndex'], gridRef)(0);
+      R.pathOr(() => null, ["current", "resetAfterColumnIndex"], gridRef)(0);
     }
     if (columnRef.current != null) {
-      R.pathOr(() => null, ['current', 'resetAfterColumnIndex'], columnRef)(0);
+      R.pathOr(() => null, ["current", "resetAfterColumnIndex"], columnRef)(0);
     }
   };
 

@@ -1,17 +1,17 @@
-const backgroundDefault = '#000000';
-const surfaceOne = '#1C1C1C';
-const surfaceTwo = '#252527';
-const fontOne = '#FFFFFF';
-const fontTwo = '#C4C4C4';
-const fontThree = '#8D8D8D';
-const icon = '#9F9F9F';
+const backgroundDefault = "#000000";
+const surfaceOne = "#1C1C1C";
+const surfaceTwo = "#252527";
+const fontOne = "#FFFFFF";
+const fontTwo = "#C4C4C4";
+const fontThree = "#8D8D8D";
+const icon = "#9F9F9F";
 
 /** Custom theme overrides for deuteranopia mode */
 export const deuteranopiaThemeOverride = {
   mixins: {
     tableCell: {
       background: surfaceOne, // surface one
-      '&.odd': {
+      "&.odd": {
         background: surfaceTwo, // surface two
       },
     },
@@ -22,22 +22,22 @@ export const deuteranopiaThemeOverride = {
     },
   },
   palette: {
-    type: 'dark',
+    type: "dark",
     general: {
       icon,
     },
     primary: {
-      main: '#FFDC3D',
-      contrastText: '#000000',
+      main: "#FFDC3D",
+      contrastText: "#000000",
     },
     background: {
       default: backgroundDefault,
       paper: surfaceOne,
     },
-    divider: '#3D3D43',
+    divider: "#3D3D43",
     text: {
-      primary: '#FFFFFF',
-      secondary: '#C4C4C4',
+      primary: "#FFFFFF",
+      secondary: "#C4C4C4",
     },
     custom: {
       general: {
@@ -49,85 +49,85 @@ export const deuteranopiaThemeOverride = {
         fontOne,
         fontTwo,
         fontThree,
-        fontFour: '#9F9F9F',
-        highlight: '#FFAC3B', // links
+        fontFour: "#9F9F9F",
+        highlight: "#FFAC3B", // links
       },
       primaryData: {
-        one: '#8400CD',
-        two: '#A700FC',
-        three: '#DA00FD',
-        four: '#FF3CFE',
+        one: "#8400CD",
+        two: "#A700FC",
+        three: "#DA00FD",
+        four: "#FF3CFE",
       },
       results: {
-        pass: '#005FCC',
-        fail: '#CD022D',
+        pass: "#005FCC",
+        fail: "#CD022D",
       },
       tags: {
-        zero: '#F9F9F9',
-        one: '#F9F9F9',
-        two: '#F9F9F9',
-        three: '#F9F9F9',
-        four: '#F9F9F9',
-        five: '#F9F9F9',
-        six: '#F9F9F9',
-        seven: '#F9F9F9',
-        eight: '#F9F9F9',
-        nine: '#F9F9F9',
-        ten: '#F9F9F9',
-        eleven: '#F9F9F9',
-        twelve: '#F9F9F9',
-        thirteen: '#F9F9F9',
-        fourteen: '#F9F9F9',
-        fifteen: '#F9F9F9',
-        sixteen: '#F9F9F9',
-        seventeen: '#F9F9F9',
-        eighteen: '#F9F9F9',
-        nineteen: '#F9F9F9',
-        twenty: '#F9F9F9',
+        zero: "#F9F9F9",
+        one: "#F9F9F9",
+        two: "#F9F9F9",
+        three: "#F9F9F9",
+        four: "#F9F9F9",
+        five: "#F9F9F9",
+        six: "#F9F9F9",
+        seven: "#F9F9F9",
+        eight: "#F9F9F9",
+        nine: "#F9F9F9",
+        ten: "#F9F9F9",
+        eleven: "#F9F9F9",
+        twelve: "#F9F9F9",
+        thirteen: "#F9F9F9",
+        fourteen: "#F9F9F9",
+        fifteen: "#F9F9F9",
+        sixteen: "#F9F9F9",
+        seventeen: "#F9F9F9",
+        eighteen: "#F9F9F9",
+        nineteen: "#F9F9F9",
+        twenty: "#F9F9F9",
       },
       condition: {
-        zero: '#6D6D6C',
-        one: '#FFFFFF',
-        two: '#FFAC3B',
-        three: '#0079FA',
+        zero: "#6D6D6C",
+        one: "#FFFFFF",
+        two: "#FFAC3B",
+        three: "#0079FA",
       },
       tokenomics: {
-        one: '#009FFA',
-        two: '#F60239',
-        three: '#FF92FD',
+        one: "#009FFA",
+        two: "#F60239",
+        three: "#FF92FD",
       },
       charts: {
-        zero: '#6D6D6C',
-        one: '#FFDF01',
-        two: '#F60239',
-        three: '#A40122',
-        four: '#009FFA',
-        five: '#FF92FD',
+        zero: "#6D6D6C",
+        one: "#FFDF01",
+        two: "#F60239",
+        three: "#A40122",
+        four: "#009FFA",
+        five: "#FF92FD",
       },
     },
   },
   overrides: {
     MuiTableBody: {
       root: {
-        '& .MuiTableRow-root': {
-          '&:nth-child(odd)': {
+        "& .MuiTableRow-root": {
+          "&:nth-child(odd)": {
             backgroundColor: surfaceTwo, // surface two
           },
         },
-        '& .MuiTableCell-root': {
+        "& .MuiTableCell-root": {
           color: fontTwo, // font two
         },
       },
     },
     MuiTabs: {
       root: {
-        '& .MuiTab-textColorInherit': {
+        "& .MuiTab-textColorInherit": {
           color: fontThree, // font three
         },
-        '& .MuiTab-textColorInherit.Mui-selected': {
+        "& .MuiTab-textColorInherit.Mui-selected": {
           color: fontOne, // font one
         },
-        '& .MuiTabs-indicator': {
+        "& .MuiTabs-indicator": {
           backgroundColor: fontOne, // font one (?)
         },
       },

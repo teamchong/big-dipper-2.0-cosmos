@@ -1,4 +1,4 @@
-import { Categories } from '../types';
+import { Categories } from "../types";
 
 class MsgVerifyInvariant {
   public category: Categories;
@@ -9,7 +9,7 @@ class MsgVerifyInvariant {
   public json: any;
 
   constructor(payload: any) {
-    this.category = 'crisis';
+    this.category = "crisis";
     this.json = payload.json;
     this.type = payload.type;
     this.sender = payload.sender;
@@ -20,7 +20,7 @@ class MsgVerifyInvariant {
   static fromJson(json: any) {
     return new MsgVerifyInvariant({
       json,
-      type: json['@type'],
+      type: json["@type"],
       sender: json.sender,
       invariantModuleName: json.invariant_module_name,
       invariantRoute: json.invariant_route,

@@ -1,5 +1,3 @@
-import Connections from './connections';
+import Connections from "./connections";
 
-export {
-  Connections,
-};
+export { Connections };

@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
-import { chainConfig } from '@configs';
-import { AtomState } from './types';
+import { atom } from "recoil";
+import { chainConfig } from "@configs";
+import { AtomState } from "./types";
 
 const initialState: AtomState = {
   networks: [],
@@ -8,6 +8,6 @@ const initialState: AtomState = {
 };
 
 export const atomState = atom<AtomState>({
-  key: 'bigDipperNetworks',
+  key: "bigDipperNetworks",
   default: initialState,
 });

@@ -4,8 +4,11 @@
  * @param missedBlockCounter
  * @returns number out of 100
  */
-export const getValidatorCondition = (signedBlockWindow: number, missedBlockCounter: number) => {
-  return (1 - (missedBlockCounter / signedBlockWindow)) * 100;
+export const getValidatorCondition = (
+  signedBlockWindow: number,
+  missedBlockCounter: number
+) => {
+  return (1 - missedBlockCounter / signedBlockWindow) * 100;
 };
 
 /**
@@ -14,13 +17,13 @@ export const getValidatorCondition = (signedBlockWindow: number, missedBlockCoun
  * @returns `green` | `yellow` | `red`
  */
 export const getValidatorConditionClass = (condition: number) => {
-  let conditionClass = '';
+  let conditionClass = "";
   if (condition > 90) {
-    conditionClass = 'green';
+    conditionClass = "green";
   } else if (condition > 70 && condition < 90) {
-    conditionClass = 'yellow';
+    conditionClass = "yellow";
   } else {
-    conditionClass = 'red';
+    conditionClass = "red";
   }
 
   return conditionClass;

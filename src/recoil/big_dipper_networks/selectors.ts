@@ -1,10 +1,7 @@
-import { selector } from 'recoil';
-import { mergeStateChange } from '@utils/merge_state_change';
-import { atomState } from './atom';
-import {
-  Networks,
-  Selected,
-} from './types';
+import { selector } from "recoil";
+import { mergeStateChange } from "@utils/merge_state_change";
+import { atomState } from "./atom";
+import { Networks, Selected } from "./types";
 
 const getNetworks = ({ get }): Networks => {
   const state = get(atomState);
@@ -12,11 +9,9 @@ const getNetworks = ({ get }): Networks => {
 };
 
 export const writeNetworks = selector({
-  key: 'bigDipperNetworksWriteNetwork',
+  key: "bigDipperNetworksWriteNetwork",
   get: getNetworks,
-  set: ({
-    get, set,
-  }, value: Networks) => {
+  set: ({ get, set }, value: Networks) => {
     const prevState = get(atomState);
     const newState = mergeStateChange(prevState, {
       networks: value,
@@ -26,7 +21,7 @@ export const writeNetworks = selector({
 });
 
 export const readNetworks = selector({
-  key: 'bigDipperNetworks.read.network',
+  key: "bigDipperNetworks.read.network",
   get: getNetworks,
 });
 
@@ -36,11 +31,9 @@ const getSelectedNetworks = ({ get }): Selected => {
 };
 
 export const writeSelectedNetwork = selector({
-  key: 'bigDipperNetworks.write.selectedNetwork',
+  key: "bigDipperNetworks.write.selectedNetwork",
   get: getSelectedNetworks,
-  set: ({
-    get, set,
-  }, value: Selected) => {
+  set: ({ get, set }, value: Selected) => {
     const prevState = get(atomState);
     const newState = mergeStateChange(prevState, {
       selected: value,
@@ -50,6 +43,6 @@ export const writeSelectedNetwork = selector({
 });
 
 export const readSelectedNetwork = selector({
-  key: 'bigDipperNetworks.read.selectedNetwork',
+  key: "bigDipperNetworks.read.selectedNetwork",
   get: getSelectedNetworks,
 });

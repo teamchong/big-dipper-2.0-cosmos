@@ -1,6 +1,4 @@
-import {
-  atomState,
-} from './atom';
+import { atomState } from "./atom";
 
 import {
   writeTheme,
@@ -9,7 +7,7 @@ import {
   readDate,
   writeTx,
   readTx,
-} from './selectors';
+} from "./selectors";
 
 import {
   THEME_LIST,
@@ -17,11 +15,9 @@ import {
   DATE_LIST,
   TX_LIST,
   getThemeTemplate,
-} from './utils';
+} from "./utils";
 
-import {
-  useSettingsRecoil,
-} from './hooks';
+import { useSettingsRecoil } from "./hooks";
 
 export {
   THEME_LIST,

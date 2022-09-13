@@ -1,4 +1,4 @@
-import { Categories } from '../types';
+import { Categories } from "../types";
 
 class MsgUnblockUser {
   public category: Categories;
@@ -10,7 +10,7 @@ class MsgUnblockUser {
   public subspace: string;
 
   constructor(payload: any) {
-    this.category = 'profiles';
+    this.category = "profiles";
     this.type = payload.type;
     this.json = payload.json;
     this.blocked = payload.blocked;
@@ -21,7 +21,7 @@ class MsgUnblockUser {
   static fromJson(json: any) {
     return new MsgUnblockUser({
       json,
-      type: json['@type'],
+      type: json["@type"],
       blocked: json.blocked,
       blocker: json.blocker,
       subspace: json.subspace,

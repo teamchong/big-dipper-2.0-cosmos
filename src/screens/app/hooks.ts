@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { init } from '@socialgouv/matomo-next';
-import * as jdenticon from 'jdenticon';
-import useTranslation from 'next-translate/useTranslation';
+import { useEffect } from "react";
+import { init } from "@socialgouv/matomo-next";
+import * as jdenticon from "jdenticon";
+import useTranslation from "next-translate/useTranslation";
 
 export const useApp = () => {
   // ==========================
@@ -14,7 +14,8 @@ export const useApp = () => {
     const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
     if (MATOMO_URL && MATOMO_SITE_ID) {
       init({
-        url: MATOMO_URL, siteId: MATOMO_SITE_ID,
+        url: MATOMO_URL,
+        siteId: MATOMO_SITE_ID,
       });
     }
     // jdenticon theme
@@ -28,7 +29,7 @@ export const useApp = () => {
         color: 0.48,
         grayscale: 0.48,
       },
-      backColor: '#2a4766',
+      backColor: "#2a4766",
     });
   }, []);
 
@@ -41,7 +42,7 @@ export const useApp = () => {
   // ==========================
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
+    const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }

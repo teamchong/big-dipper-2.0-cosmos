@@ -1,24 +1,24 @@
-export const columns:{
+export const columns: {
   key: string;
-  align?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
-  width: number,
+  align?: "left" | "center" | "right" | "justify" | "inherit";
+  width: number;
 }[] = [
   {
-    key: 'block',
+    key: "block",
     width: 25,
   },
   {
-    key: 'hash',
+    key: "hash",
     width: 25,
   },
   {
-    key: 'result',
-    align: 'right',
+    key: "result",
+    align: "right",
     width: 25,
   },
   {
-    key: 'time',
-    align: 'right',
+    key: "time",
+    align: "right",
     width: 25,
   },
 ];

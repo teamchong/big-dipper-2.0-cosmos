@@ -4,6 +4,6 @@
  * @param base 0
  * @returns new string
  */
-export const replaceNaN = (format: string, base = '0') => {
-  return format.replace('NaN', base).replace('Infinity', '100');
+export const replaceNaN = (format: string, base = "0") => {
+  return format.replace("NaN", base).replace("Infinity", "100");
 };

@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import * as R from "ramda";
 
 class MintParams {
   public blocksPerYear: number;
@@ -19,12 +19,12 @@ class MintParams {
 
   static fromJson(data: any) {
     return new MintParams({
-      blocksPerYear: R.pathOr(0, ['blocks_per_year'], data),
-      goalBonded: R.pathOr(0, ['goal_bonded'], data),
-      inflationMax: R.pathOr(0, ['inflation_max'], data),
-      inflationMin: R.pathOr(0, ['inflation_min'], data),
-      inflationRateChange: R.pathOr(0, ['inflation_rate_change'], data),
-      mintDenom: R.pathOr(0, ['mint_denom'], data),
+      blocksPerYear: R.pathOr(0, ["blocks_per_year"], data),
+      goalBonded: R.pathOr(0, ["goal_bonded"], data),
+      inflationMax: R.pathOr(0, ["inflation_max"], data),
+      inflationMin: R.pathOr(0, ["inflation_min"], data),
+      inflationRateChange: R.pathOr(0, ["inflation_rate_change"], data),
+      mintDenom: R.pathOr(0, ["mint_denom"], data),
     });
   }
 }

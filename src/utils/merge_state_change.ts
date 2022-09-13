@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import * as R from "ramda";
 
 /**
  * Util function to merge 2 objects together
@@ -7,6 +7,6 @@ import * as R from 'ramda';
  * @param change change object
  * @returns newly merged object replacing prev state items with new state items
  */
-export const mergeStateChange = (prevState:any, change: any) => {
+export const mergeStateChange = (prevState: any, change: any) => {
   return R.mergeDeepLeft(change, prevState);
 };

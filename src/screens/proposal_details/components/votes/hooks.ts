@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import * as R from 'ramda';
+import { useState } from "react";
+import { useRouter } from "next/router";
+import * as R from "ramda";
 import {
-  useProposalDetailsVotesQuery, ProposalDetailsVotesQuery,
-} from '@graphql/types/general_types';
-import { toValidatorAddress } from '@utils/prefix_convert';
-import { VoteState } from './types';
+  useProposalDetailsVotesQuery,
+  ProposalDetailsVotesQuery,
+} from "@graphql/types/general_types";
+import { toValidatorAddress } from "@utils/prefix_convert";
+import { VoteState } from "./types";
 
-export const useVotes = (resetPagination:any) => {
+export const useVotes = (resetPagination: any) => {
   const router = useRouter();
   const [state, setState] = useState<VoteState>({
     data: [],
@@ -37,7 +38,7 @@ export const useVotes = (resetPagination:any) => {
 
   useProposalDetailsVotesQuery({
     variables: {
-      proposalId: R.pathOr('', ['query', 'id'], router),
+      proposalId: R.pathOr("", ["query", "id"], router),
     },
     onCompleted: (data) => {
       handleSetState(formatVotes(data));
@@ -47,7 +48,11 @@ export const useVotes = (resetPagination:any) => {
   const formatVotes = (data: ProposalDetailsVotesQuery) => {
     const validatorDict = {};
     const validators = data.validatorStatuses.map((x) => {
-      const selfDelegateAddress = R.pathOr('', ['validator', 'validatorInfo', 'selfDelegateAddress'], x);
+      const selfDelegateAddress = R.pathOr(
+        "",
+        ["validator", "validatorInfo", "selfDelegateAddress"],
+        x
+      );
       validatorDict[selfDelegateAddress] = false;
       return selfDelegateAddress;
     });
@@ -58,41 +63,43 @@ export const useVotes = (resetPagination:any) => {
     let veto = 0;
 
     const votes = data.proposalVote.map((x) => {
-      if (x.option === 'VOTE_OPTION_YES') {
+      if (x.option === "VOTE_OPTION_YES") {
         yes += 1;
       }
-      if (x.option === 'VOTE_OPTION_ABSTAIN') {
+      if (x.option === "VOTE_OPTION_ABSTAIN") {
         abstain += 1;
       }
-      if (x.option === 'VOTE_OPTION_NO') {
+      if (x.option === "VOTE_OPTION_NO") {
         no += 1;
       }
-      if (x.option === 'VOTE_OPTION_NO_WITH_VETO') {
+      if (x.option === "VOTE_OPTION_NO_WITH_VETO") {
         veto += 1;
       }
       if (validatorDict[x.voterAddress] === false) {
         validatorDict[x.voterAddress] = true;
       }
 
-      return ({
+      return {
         user: x.voterAddress,
         vote: x.option,
-      });
+      };
     });
 
     // =====================================
     // Get data for active validators that did not vote
     // =====================================
-    const validatorsNotVoted = validators.filter((x) => {
-      return validatorDict[x] === false;
-    }).map((address) => {
-      return ({
-        user: toValidatorAddress(address),
-        vote: 'NOT_VOTED',
+    const validatorsNotVoted = validators
+      .filter((x) => {
+        return validatorDict[x] === false;
+      })
+      .map((address) => {
+        return {
+          user: toValidatorAddress(address),
+          vote: "NOT_VOTED",
+        };
       });
-    });
 
-    return ({
+    return {
       data: votes,
       validatorsNotVoted,
       voteCount: {
@@ -102,7 +109,7 @@ export const useVotes = (resetPagination:any) => {
         abstain,
         didNotVote: validatorsNotVoted.length,
       },
-    });
+    };
   };
 
   return {

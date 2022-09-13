@@ -1,28 +1,28 @@
 export const getStatusInfo = (status: string, t: any) => {
   const statusDict = {
     PROPOSAL_STATUS_DEPOSIT_PERIOD: {
-      value: t('deposit'),
-      tag: 'one',
+      value: t("deposit"),
+      tag: "one",
     },
     PROPOSAL_STATUS_INVALID: {
-      value: t('invalid'),
-      tag: 'two',
+      value: t("invalid"),
+      tag: "two",
     },
     PROPOSAL_STATUS_VOTING_PERIOD: {
-      value: t('voting'),
-      tag: 'three',
+      value: t("voting"),
+      tag: "three",
     },
     PROPOSAL_STATUS_PASSED: {
-      value: t('passed'),
-      tag: 'four',
+      value: t("passed"),
+      tag: "four",
     },
     PROPOSAL_STATUS_REJECTED: {
-      value: t('rejected'),
-      tag: 'five',
+      value: t("rejected"),
+      tag: "five",
     },
     PROPOSAL_STATUS_FAILED: {
-      value: t('failed'),
-      tag: 'six',
+      value: t("failed"),
+      tag: "six",
     },
   };
 
@@ -31,6 +31,6 @@ export const getStatusInfo = (status: string, t: any) => {
   }
   return {
     value: status,
-    tag: 'zero',
+    tag: "zero",
   };
 };

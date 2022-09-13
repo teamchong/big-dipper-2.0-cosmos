@@ -1,25 +1,26 @@
-import {
-  selectorFamily,
-  GetRecoilValue,
-} from 'recoil';
-import * as R from 'ramda';
-import { bech32 } from 'bech32';
-import { chainConfig } from '@configs';
-import { readValidator } from '@recoil/validators';
-import { AtomState as ProfileAtomState } from '@recoil/profiles/types';
-import { atomFamilyState } from './atom';
+import { selectorFamily, GetRecoilValue } from "recoil";
+import * as R from "ramda";
+import { bech32 } from "bech32";
+import { chainConfig } from "@configs";
+import { readValidator } from "@recoil/validators";
+import { AtomState as ProfileAtomState } from "@recoil/profiles/types";
+import { atomFamilyState } from "./atom";
 
 // ======================================================================
 // selector utils
 // ======================================================================
 
 const getDelegatorAddress = ({
-  address, get,
-}: {address: string, get: GetRecoilValue}): string => {
+  address,
+  get,
+}: {
+  address: string;
+  get: GetRecoilValue;
+}): string => {
   const consensusRegex = `^(${chainConfig.prefix.consensus})`;
   const validatorRegex = `^(${chainConfig.prefix.validator})`;
   const delegatorRegex = `^(${chainConfig.prefix.account})`;
-  let selectedAddress = '';
+  let selectedAddress = "";
   if (new RegExp(consensusRegex).test(address)) {
     // address given is a consensus
     const validator = get(readValidator(address));
@@ -47,8 +48,12 @@ export const validatorToDelegatorAddress = (address: string) => {
  * Returns address otherwise
  */
 const getReturnAddress = ({
-  address, get,
-}: {address: string, get: GetRecoilValue}): string => {
+  address,
+  get,
+}: {
+  address: string;
+  get: GetRecoilValue;
+}): string => {
   const consensusRegex = `^(${chainConfig.prefix.consensus})`;
   let selectedAddress = address;
   if (new RegExp(consensusRegex).test(address)) {
@@ -68,119 +73,140 @@ const getReturnAddress = ({
  * @param address string
  * @returns string | null
  */
-const getProfile = (address: string) => ({ get }): AvatarName => {
-  const returnAddress = getReturnAddress({
-    address, get,
-  });
-  const delegatorAddress = getDelegatorAddress({
-    address, get,
-  });
-  const state = get(atomFamilyState(delegatorAddress));
-  const name = R.pathOr(address, ['moniker'], state);
-  const imageUrl = R.pathOr('', ['imageUrl'], state);
-  return ({
-    address: returnAddress,
-    name: name.length ? name : address,
-    imageUrl,
-  });
-};
-
-const getProfiles = (addresses: string[]) => ({ get }): AvatarName[] => {
-  const profiles = addresses.map((x) => {
+const getProfile =
+  (address: string) =>
+  ({ get }): AvatarName => {
     const returnAddress = getReturnAddress({
-      address: x, get,
+      address,
+      get,
     });
     const delegatorAddress = getDelegatorAddress({
-      address: x, get,
+      address,
+      get,
     });
     const state = get(atomFamilyState(delegatorAddress));
-    const name = R.pathOr(x, ['moniker'], state);
-    const imageUrl = R.pathOr('', ['imageUrl'], state);
-    return ({
+    const name = R.pathOr(address, ["moniker"], state);
+    const imageUrl = R.pathOr("", ["imageUrl"], state);
+    return {
       address: returnAddress,
-      name: name.length ? name : x,
+      name: name.length ? name : address,
       imageUrl,
+    };
+  };
+
+const getProfiles =
+  (addresses: string[]) =>
+  ({ get }): AvatarName[] => {
+    const profiles = addresses.map((x) => {
+      const returnAddress = getReturnAddress({
+        address: x,
+        get,
+      });
+      const delegatorAddress = getDelegatorAddress({
+        address: x,
+        get,
+      });
+      const state = get(atomFamilyState(delegatorAddress));
+      const name = R.pathOr(x, ["moniker"], state);
+      const imageUrl = R.pathOr("", ["imageUrl"], state);
+      return {
+        address: returnAddress,
+        name: name.length ? name : x,
+        imageUrl,
+      };
     });
-  });
-  return profiles;
-};
+    return profiles;
+  };
 
 // ======================================================================
 // selectors
 // ======================================================================
 export const writeProfile = selectorFamily<AvatarName, string>({
-  key: 'profile.write.profile',
+  key: "profile.write.profile",
   get: getProfile,
-  set: (address: string) => ({
-    set, get,
-  }, profile: AvatarName) => {
-    const delegatorAddress = getDelegatorAddress({
-      address, get,
-    });
-    if (delegatorAddress) {
-      if (profile === null) {
-        set(atomFamilyState(delegatorAddress), false);
-      } else {
-        set(atomFamilyState(delegatorAddress), {
-          moniker: profile.name,
-          imageUrl: profile.imageUrl,
-        });
+  set:
+    (address: string) =>
+    ({ set, get }, profile: AvatarName) => {
+      const delegatorAddress = getDelegatorAddress({
+        address,
+        get,
+      });
+      if (delegatorAddress) {
+        if (profile === null) {
+          set(atomFamilyState(delegatorAddress), false);
+        } else {
+          set(atomFamilyState(delegatorAddress), {
+            moniker: profile.name,
+            imageUrl: profile.imageUrl,
+          });
+        }
       }
-    }
-  },
+    },
 });
 
 export const readProfile = selectorFamily({
-  key: 'profile.read.profile',
+  key: "profile.read.profile",
   get: getProfile,
 });
 
 export const readProfiles = selectorFamily({
-  key: 'profile.read.profiles',
+  key: "profile.read.profiles",
   get: getProfiles,
 });
 
 export const readDelegatorAddress = selectorFamily({
-  key: 'profile.read.delegatorAddress',
-  get: (address:string) => ({ get }): string => {
-    return getDelegatorAddress({
-      address, get,
-    });
-  },
+  key: "profile.read.delegatorAddress",
+  get:
+    (address: string) =>
+    ({ get }): string => {
+      return getDelegatorAddress({
+        address,
+        get,
+      });
+    },
 });
 
 export const readDelegatorAddresses = selectorFamily({
-  key: 'profile.read.delegatorAddresses',
-  get: (addresses:string[]) => ({ get }): string[] => {
-    return addresses.map((x) => {
-      return getDelegatorAddress({
-        address: x, get,
+  key: "profile.read.delegatorAddresses",
+  get:
+    (addresses: string[]) =>
+    ({ get }): string[] => {
+      return addresses.map((x) => {
+        return getDelegatorAddress({
+          address: x,
+          get,
+        });
       });
-    });
-  },
+    },
 });
 
 export const readProfileExist = selectorFamily({
-  key: 'profile.read.profileExist',
-  get: (address: string) => ({ get }): ProfileAtomState => {
-    const delegatorAddress = getDelegatorAddress({
-      address, get,
-    });
-    const state = get(atomFamilyState(delegatorAddress));
-    return state;
-  },
-});
-
-export const readProfilesExist = selectorFamily({
-  key: 'profile.read.profilesExist',
-  get: (addresses: string[]) => ({ get }) => {
-    const profiles: ProfileAtomState[] = addresses.map((x) => {
+  key: "profile.read.profileExist",
+  get:
+    (address: string) =>
+    ({ get }): ProfileAtomState => {
       const delegatorAddress = getDelegatorAddress({
-        address: x, get,
+        address,
+        get,
       });
       const state = get(atomFamilyState(delegatorAddress));
       return state;
-    });
-    return profiles;
-  },
+    },
+});
+
+export const readProfilesExist = selectorFamily({
+  key: "profile.read.profilesExist",
+  get:
+    (addresses: string[]) =>
+    ({ get }) => {
+      const profiles: ProfileAtomState[] = addresses.map((x) => {
+        const delegatorAddress = getDelegatorAddress({
+          address: x,
+          get,
+        });
+        const state = get(atomFamilyState(delegatorAddress));
+        return state;
+      });
+      return profiles;
+    },
 });
