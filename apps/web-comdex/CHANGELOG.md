@@ -1,5 +1,11 @@
 # Unreleased
 
+## 2.12.2
+
+### Patch Changes
+
+- [`cc04b925`](https://github.com/forbole/big-dipper-2.0-cosmos/commit/cc04b9259f0310d33cd072a0e7fddc650b1c9ed1) Thanks [@teamchong](https://github.com/teamchong)! - test4
+
 ## 2.12.1
 
 ### Patch Changes
